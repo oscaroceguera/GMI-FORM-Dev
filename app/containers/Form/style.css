@@ -1,0 +1,26 @@
+.registrationHeader {
+  background-color: #D32F2F;
+  color: white;
+  text-align: center;
+}
+
+.formTextField {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.textField {
+  margin-right: 1em;
+}
+
+.formRadioField {
+}
+
+.radioFieldRow {
+  color: #37474F;
+}
+
+.formTextField,
+.radioFieldRow {
+  padding: 0 2em;
+}

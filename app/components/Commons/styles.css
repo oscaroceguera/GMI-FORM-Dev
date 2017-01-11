@@ -1,0 +1,12 @@
+.paperContainer {
+  width: 69%;
+  margin: 1em auto;
+  padding-bottom: 1em;
+}
+
+@media screen and (max-width: 500px) {
+  .paperContainer {
+    width: 100%;
+    margin: 0;
+  }
+}

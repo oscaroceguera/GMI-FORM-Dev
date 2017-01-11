@@ -1,0 +1,9 @@
+.header {
+  text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+  .header img {
+    width: 100%;
+  }
+}
