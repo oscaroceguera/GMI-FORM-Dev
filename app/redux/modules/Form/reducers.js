@@ -1,29 +1,35 @@
-import { fromJS, List } from 'immutable'
+import { fromJS } from 'immutable'
 import {
-  SAVE_FORM_REQUEST,
-  SAVE_FORM_SUCCESS,
-  SAVE_FORM_FAIL
+  SET_DATA_FORM,
+  EMPTY_FORM,
+  // SAVE_FORM_REQUEST,
+  // SAVE_FORM_SUCCESS,
+  // SAVE_FORM_FAIL
 } from './constants'
 
 const initialState = fromJS({
-  register: {},
-  registerLoading: false,
-  registerFail: null
+  person: {},
+  // personLoading: false,
+  // personFail: null
 })
 
 function registerReducer (state = initialState, action) {
   switch (action.type) {
-    case SAVE_FORM_REQUEST:
-      return state.set('registerLoading', true)
-    case SAVE_FORM_SUCCESS:
-      return state
-        .set('registerLoading', false)
-        .set('register', action.registerData)
-    case SAVE_FORM_FAIL:
+    case EMPTY_FORM:
       return state.merge({
-        registerLoading: true,
-        registerFail: action.error
+        person: {}
       })
+    case SET_DATA_FORM:
+      return state
+        .set('personLoading', false)
+        .setIn(['person', action.field], action.person)
+    // case SAVE_FORM_REQUEST:
+    //   return state.set('personLoading', true)
+    // case SAVE_FORM_FAIL:
+    //   return state.merge({
+    //     personLoading: true,
+    //     personFail: action.error
+    //   })
     default:
       return state
   }

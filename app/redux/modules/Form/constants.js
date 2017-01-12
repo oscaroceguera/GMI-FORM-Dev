@@ -1,3 +1,5 @@
+export const SET_DATA_FORM = 'SET_DATA_FORM'
+export const EMPTY_FORM = 'EMPTY_FORM'
 export const SAVE_FORM_REQUEST = 'SAVE_FORM_REQUEST'
 export const SAVE_FORM_SUCCESS = 'SAVE_FORM_SUCCESS'
 export const SAVE_FORM_FAIL = 'SAVE_FORM_FAIL'
