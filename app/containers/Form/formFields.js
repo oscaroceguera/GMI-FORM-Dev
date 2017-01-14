@@ -1,5 +1,5 @@
 export const TEXT_FIELDS = [
-  { field: 'firsName', labelText: 'First Name/Nombre', hintText: '', fullWidth: false, requiredType: 'txt' },
+  { field: 'firstName', labelText: 'First Name/Nombre', hintText: '', fullWidth: false, requiredType: 'txt' },
   { field: 'lastName', labelText: 'Last Name/Apellido', hintText: '', fullWidth: false, requiredType: 'txt' },
   { field: 'title', labelText: 'Title/Titulo', hintText: 'Sra, Sr, Miss, Mrs, ...', fullWidth: false, requiredType: 'txt' },
   { field: 'organization', labelText: 'Organization/Organización', hintText: '', fullWidth: true, requiredType: 'txt' },

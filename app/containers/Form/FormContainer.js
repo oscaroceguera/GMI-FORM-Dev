@@ -20,6 +20,10 @@ const stylJS = {
 }
 
 class FormContainer extends Component {
+  componentWillMount () {
+    this.props.emptyForm()
+  }
+
   onRadioChange (e, value, field) {
     this.props.setDataForm(value, field)
   }
@@ -49,6 +53,10 @@ class FormContainer extends Component {
       : 'required/requerido'
   }
 
+  onSave = (e) => {
+    e.preventDefault()
+    this.props.saveFormRequest()
+  }
   render () {
     const { person } = this.props
     const filtrado = TEXT_FIELDS.filter( item => (person[item.field] === undefined) || (person[item.field] === '') || (person[item.field].length < 3)) // eslint-disable-line
@@ -91,6 +99,7 @@ class FormContainer extends Component {
             label='Register/Registrarse'
             secondary={true} // eslint-disable-line
             disabled={!showSubmit}
+            onClick={this.onSave}
           />
         </div>
       </PaperWrapper>
