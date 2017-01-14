@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { PaperWrapper } from 'components'
 import { browserHistory } from 'react-router'
 
@@ -48,6 +48,5 @@ class InvitationContainer extends Component {
     )
   }
 }
-
 
 export default InvitationContainer

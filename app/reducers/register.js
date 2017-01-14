@@ -1,14 +1,14 @@
 import { fromJS } from 'immutable'
 import {
   SET_DATA_FORM,
-  EMPTY_FORM,
+  EMPTY_FORM
   // SAVE_FORM_REQUEST,
   // SAVE_FORM_SUCCESS,
   // SAVE_FORM_FAIL
 } from 'types/register'
 
 const initialState = fromJS({
-  person: {},
+  person: {}
   // personLoading: false,
   // personFail: null
 })

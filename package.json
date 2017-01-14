@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "spell": "standard --verbose | snazzy",
     "start": "webpack-dev-server",
     "production": "webpack -p"
   },
@@ -37,6 +38,8 @@
     "css-loader": "^0.26.1",
     "html-webpack-plugin": "^2.26.0",
     "normalize.css": "^5.0.0",
+    "snazzy": "^6.0.0",
+    "standard": "^8.6.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.14.0",
