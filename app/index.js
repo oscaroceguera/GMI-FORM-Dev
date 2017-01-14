@@ -1,13 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import thunk from 'redux-thunk'
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import { routerReducer, syncHistoryWithStore } from 'react-router-redux'
 import { browserHistory } from 'react-router'
 
-import * as reducers from 'redux/modules'
+import createSagaMiddleware from 'redux-saga'
+
+import * as reducers from 'reducers'
 import getRoutes from 'config/routes'
+
+import rooSagas from 'sagas'
+
+const sagaMiddleware = createSagaMiddleware()
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
@@ -17,10 +22,12 @@ injectTapEventPlugin()
 const store = createStore(
   combineReducers({...reducers, routing: routerReducer}),
   compose(
-    applyMiddleware(thunk),
+    applyMiddleware(sagaMiddleware),
     window.devToolsExtension ? window.devToolsExtension() : (f) => f
   )
 )
+
+sagaMiddleware.run(rooSagas)
 
 const history = syncHistoryWithStore(browserHistory, store)
 

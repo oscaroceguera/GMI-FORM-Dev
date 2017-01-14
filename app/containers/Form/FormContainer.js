@@ -2,15 +2,14 @@ import React, { Component} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import isEmail from 'email-validator'
-import * as registryActionCreators from 'redux/modules/Form/actions'
+import * as registryActionCreators from 'actions/register'
+
+import { TEXT_FIELDS } from './formFields'
 
 import { PaperWrapper } from 'components'
 
 import { RadioButton, RadioButtonGroup } from 'material-ui'
 import TextField from 'material-ui/TextField'
-/* <div style={{textAlign: 'center'}}>
-<TagFace color={Styles.colors.indigo500} style={{width:'50px',height:'50px'}}/>
-</div> */
 
 import { colors } from 'material-ui/styles'
 import {
@@ -21,7 +20,6 @@ import {
   registrationHeader
 } from './style.css'
 
-const TRUE = true
 const stylJS = {
   labelStyle: {
     color: colors.grey500
@@ -31,114 +29,51 @@ const stylJS = {
 class FormContainer extends Component {
 
   onHandleChange (e, value, field) {
+    if (!value || value.length < 3) return
     this.props.setDataForm(value, field)
   }
 
-  _isEmail (field) {
-    return isEmail.validate(field)
-      ? ''
-      : 'email format/formato email'
-  }
+  _errorText (field, type) {
+    const { person } = this.props
 
-  _errorText (field) {
+    if (type === 'email') return isEmail.validate(field) ? '' : 'email format/formato email'
+
+    if (type === 'emailConfirm') {
+      return field
+        ? field === person.email
+          ? ''
+          : 'verify email does not match/ emails no coinciden'
+        : 'email format/formato email'
+    }
+
     return field
-      ? field.length > 2
+      ? field.length > 3
         ? ''
         : 'required/requerido'
       : 'required/requerido'
   }
 
   render () {
+    const { person } = this.props
+
     return (
       <PaperWrapper>
         <h1 className={registrationHeader}>Registration / Inscripción</h1>
         <div className={formTextField}>
-          <TextField
-            onChange={(e, value, field) => this.onHandleChange(e, value, 'firsName')}
-            className={textField}
-            errorText={this._errorText(this.props.person.firsName)}
-            floatingLabelText='First Name/Nombre'
-          />
-          <TextField
-            onChange={(e, value, field) => this.onHandleChange(e, value, 'lastName')}
-            className={textField}
-            errorText={this._errorText(this.props.person.lastName)}
-            floatingLabelText='Last Name/Apellido'
-          />
-          <TextField
-            onChange={(e, value, field) => this.onHandleChange(e, value, 'title')}
-            className={textField}
-            errorText={this._errorText(this.props.person.title)}
-            hintText='Sra, Sr, Miss, Mrs, ...'
-            floatingLabelText='Title/Titulo'
-          />
-          <TextField
-            onChange={(e, value, field) => this.onHandleChange(e, value, 'organization')}
-            className={textField}
-            fullWidth={TRUE}
-            errorText={this._errorText(this.props.person.organization)}
-            floatingLabelText='Organization/Organización'
-          />
-          <TextField
-            onChange={(e, value, field) => this.onHandleChange(e, value, 'position')}
-            className={textField}
-            errorText={this._errorText(this.props.person.position)}
-            floatingLabelText='Position/Posición'
-          />
-          <TextField
-            onChange={(e, value, field) => this.onHandleChange(e, value, 'email')}
-            className={textField}
-            errorText={this._isEmail(this.props.person.email)}
-            floatingLabelText='Email'
-          />
-          <TextField
-            className={textField}
-            errorText='required/requerido'
-            floatingLabelText='Verify email/comporbar email'
-          />
-          <TextField
-            onChange={(e, value, field) => this.onHandleChange(e, value, 'work')}
-            className={textField}
-            errorText={this._errorText(this.props.person.work)}
-            floatingLabelText='Work/Trabajo'
-          />
-          <TextField
-            onChange={(e, value, field) => this.onHandleChange(e, value, 'mobile')}
-            className={textField}
-            errorText={this._errorText(this.props.person.mobile)}
-            floatingLabelText='Mobile/Celular'
-          />
-          <TextField
-            onChange={(e, value, field) => this.onHandleChange(e, value, 'country')}
-            className={textField}
-            errorText={this._errorText(this.props.person.country)}
-            floatingLabelText='Country/Pais'
-          />
-          <TextField
-            onChange={(e, value, field) => this.onHandleChange(e, value, 'state')}
-            className={textField}
-            errorText={this._errorText(this.props.person.state)}
-            floatingLabelText='State/Estado'
-          />
-          <TextField
-            onChange={(e, value, field) => this.onHandleChange(e, value, 'town')}
-            className={textField}
-            errorText={this._errorText(this.props.person.town)}
-            floatingLabelText='City/Ciudad'
-          />
-          <TextField
-            onChange={(e, value, field) => this.onHandleChange(e, value, 'line')}
-            className={textField}
-            errorText={this._errorText(this.props.person.line)}
-            floatingLabelText='Line 1/C.P.'
-          />
-          <TextField
-            onChange={(e, value, field) => this.onHandleChange(e, value, 'address')}
-            className={textField}
-            errorText={this._errorText(this.props.person.address)}
-            fullWidth={TRUE}
-            floatingLabelText='Primary Address/Direccion'
-          />
+          {
+            TEXT_FIELDS.map((item, index) => {
+              return (
+                <TextField
+                  key={index}
+                  className={textField}
+                  floatingLabelText={item.labelText}
+                  onChange={(e, value, field) => this.onHandleChange(e, value, item.field)}
+                  errorText={this._errorText(person[item.field], item.requiredType)}
+                  fullWidth={item.fullWidth}
+                />
+              )
+            })
+          }
         </div>
         <div className={formRadioField}>
           <div className={radioFieldRow}>

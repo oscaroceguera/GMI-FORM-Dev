@@ -5,7 +5,7 @@ import {
   // SAVE_FORM_REQUEST,
   // SAVE_FORM_SUCCESS,
   // SAVE_FORM_FAIL
-} from './constants'
+} from 'types/register'
 
 const initialState = fromJS({
   person: {},

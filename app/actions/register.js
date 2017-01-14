@@ -4,7 +4,7 @@ import {
   SAVE_FORM_SUCCESS,
   SAVE_FORM_FAIL,
   EMPTY_FORM
-} from './constants'
+} from 'types/register'
 
 export function setDataForm (person, field) {
   return {
