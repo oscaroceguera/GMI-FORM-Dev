@@ -5,6 +5,7 @@ import { actions } from 'actions/register'
 import { PaperWrapper } from 'components'
 
 import CircularProgress from 'material-ui/CircularProgress'
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import NotFoundtFace from 'material-ui/svg-icons/social/sentiment-very-dissatisfied'
 
 import { ProgressContainer, NotFoundRegistriesContainer, NotFoundRegistriesIcon } from './style.css'
@@ -34,6 +35,24 @@ function NotFoundRegistries () {
   )
 }
 
+Registry.propTypes = {
+  data: React.PropTypes.object.isRequired
+}
+
+function Registry({data}) {
+  const name = `${data.title} ${data.firstName} ${data.lastName}`
+  const address = `${data.address}, ${data.line}`
+  const location = `${data.town}, ${data.state}, ${data.country}`
+  return (
+    <TableRow>
+      <TableRowColumn>{name}</TableRowColumn>
+      <TableRowColumn>{data.email}</TableRowColumn>
+      <TableRowColumn>{address}</TableRowColumn>
+      <TableRowColumn>{location}</TableRowColumn>
+    </TableRow>
+  )
+}
+
 
 class RegistryList extends Component {
   static propTypes = {
@@ -46,16 +65,27 @@ class RegistryList extends Component {
     this.props.fetchRegistyRequest()
   }
   render () {
-    console.log('people', this.props.people.length);
     const { people, loading, fail } = this.props
     return (
       <PaperWrapper>
         {
           loading
             ? <Progress />
-          : people.length > 0
+          : people.length < 0
             ? <NotFoundRegistries />
-            : <p>Si tiene</p>
+          : <Table>
+              <TableHeader displaySelectAll={false}>
+                <TableRow>
+                  <TableHeaderColumn>Nombre</TableHeaderColumn>
+                  <TableHeaderColumn>Email</TableHeaderColumn>
+                  <TableHeaderColumn>Dirección</TableHeaderColumn>
+                  <TableHeaderColumn>Ubicación</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody displayRowCheckbox={false}>
+                { people.map((row, index) => <Registry key={index} data={row}/>) }
+              </TableBody>
+            </Table>
         }
       </PaperWrapper>
     )
