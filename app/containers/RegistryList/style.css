@@ -1,0 +1,11 @@
+.ProgressContainer {
+  display: flex;
+  justify-content: center;
+  padding: 5em 0;
+}
+
+.NotFoundRegistriesContainer {
+  color: gray;
+  text-align: center;
+  padding: 2em;
+}
