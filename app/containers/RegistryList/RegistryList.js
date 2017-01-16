@@ -39,7 +39,7 @@ Registry.propTypes = {
   data: React.PropTypes.object.isRequired
 }
 
-function Registry({data}) {
+function Registry ({data}) {
   const name = `${data.title} ${data.firstName} ${data.lastName}`
   const address = `${data.address}, ${data.line}`
   const location = `${data.town}, ${data.state}, ${data.country}`
@@ -50,6 +50,29 @@ function Registry({data}) {
       <TableRowColumn>{address}</TableRowColumn>
       <TableRowColumn>{location}</TableRowColumn>
     </TableRow>
+  )
+}
+
+TableRegistries.propTypes = {
+  data: React.PropTypes.array.isRequired
+}
+
+function TableRegistries ({data}) {
+  return (
+    <Table>
+      <TableHeader displaySelectAll={false}>
+        <TableRow>
+          <TableHeaderColumn>Nombre</TableHeaderColumn>
+          <TableHeaderColumn>Email</TableHeaderColumn>
+          <TableHeaderColumn>Dirección</TableHeaderColumn>
+          <TableHeaderColumn>Ubicación</TableHeaderColumn>
+        </TableRow>
+      </TableHeader>
+      <TableBody displayRowCheckbox={false}>
+        { data.map((row, index) => <Registry key={index} data={row} />) }
+      </TableBody>
+    </Table>
+
   )
 }
 
@@ -73,19 +96,7 @@ class RegistryList extends Component {
             ? <Progress />
           : people.length < 0
             ? <NotFoundRegistries />
-          : <Table>
-              <TableHeader displaySelectAll={false}>
-                <TableRow>
-                  <TableHeaderColumn>Nombre</TableHeaderColumn>
-                  <TableHeaderColumn>Email</TableHeaderColumn>
-                  <TableHeaderColumn>Dirección</TableHeaderColumn>
-                  <TableHeaderColumn>Ubicación</TableHeaderColumn>
-                </TableRow>
-              </TableHeader>
-              <TableBody displayRowCheckbox={false}>
-                { people.map((row, index) => <Registry key={index} data={row}/>) }
-              </TableBody>
-            </Table>
+          : <TableRegistries data={people}/>
         }
       </PaperWrapper>
     )
