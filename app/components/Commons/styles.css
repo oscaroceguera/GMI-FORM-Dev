@@ -4,6 +4,11 @@
   padding-bottom: 1em;
 }
 
+.logoContainer {
+  text-align: center;
+  padding-top: 1em;
+}
+
 @media screen and (max-width: 500px) {
   .paperContainer {
     width: 100%;
