@@ -1,10 +1,12 @@
 import axios from 'axios'
+import { API_URL } from './config'
 
 export const savePerson = (person) =>
   axios
-    .post('http://ooceguera.webfactional.com/registries', person)
+    .post(`${API_URL}/registries`, person)
     .then((data) => data.body)
 
 export const fetchRegistries = () =>
-  axios.get('http://ooceguera.webfactional.com/registries')
-  .then((registries) => registries.data)
+  axios
+    .get(`${API_URL}/registries`)
+    .then((registries) => registries.data)

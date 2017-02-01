@@ -9,3 +9,21 @@
   text-align: center;
   padding: 2em;
 }
+
+.btnCSV {
+  position: fixed;
+  top: 80%;
+  right: 5em;
+}
+
+@media screen and (max-width: 800px) {
+  .btnCSV {
+    right: 3.5em;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .btnCSV {
+    right: 1em;
+  }
+}

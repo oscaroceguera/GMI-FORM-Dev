@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { actions } from 'actions/register'
-
+import { CSV_REGISTRIES } from 'services/config'
 import { PaperWrapper } from 'components'
 
 import CircularProgress from 'material-ui/CircularProgress'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import NotFoundtFace from 'material-ui/svg-icons/social/sentiment-very-dissatisfied'
+import Download from 'material-ui/svg-icons/file/file-download'
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
-import { ProgressContainer, NotFoundRegistriesContainer, NotFoundRegistriesIcon } from './style.css'
+import { ProgressContainer, NotFoundRegistriesContainer, NotFoundRegistriesIcon, btnCSV } from './style.css'
 
 const style = {
   NotFoundRegistriesIcon: {
@@ -90,15 +92,23 @@ class RegistryList extends Component {
   render () {
     const { people, loading, fail } = this.props
     return (
-      <PaperWrapper>
-        {
-          loading
-            ? <Progress />
-          : people.length < 0
-            ? <NotFoundRegistries />
-          : <TableRegistries data={people}/>
-        }
+      <div>
+        <PaperWrapper>
+          {
+            loading
+              ? <Progress />
+              : people.length < 0
+                ? <NotFoundRegistries />
+                : <TableRegistries data={people}/>
+          }
+
       </PaperWrapper>
+      <div className={btnCSV}>
+        <FloatingActionButton href={CSV_REGISTRIES}>
+          <Download />
+        </FloatingActionButton>
+      </div>
+    </div>
     )
   }
 }
