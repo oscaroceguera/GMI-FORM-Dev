@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router'
 
 import { RaisedButton } from 'material-ui'
 import Face from 'material-ui/svg-icons/image/tag-faces'
+import Illumina from '../../illumina-logo.svg'
 
 const TRUE = true
 const style = {
@@ -13,6 +14,17 @@ const style = {
   },
   button: {
     margin: 12
+  },
+  linksContainer: {
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
+  titleSponsor: {
+    color: '#3F51B5',
+    padding: 0
+  },
+  divSponsor: {
+    textAlign: 'center'
   }
 }
 
@@ -34,9 +46,22 @@ class InvitationContainer extends Component {
           <p>Together with the GMI Steering Committee, InoQuoTech has the honor to host one of the most important global events, known as the Global Microbial Identifier - GMI meeting <a href='http://www.globalmicrobialidentifier.org'>globalmicrobialidentifier.org</a>.  The genomic epidemiological database for global identification of microorganisms, or global identifier of microorganisms is a platform for storing whole genome sequencing (WGS) data of microorganisms. These data are for the identification of relevant genes and for the comparison of genomes to detect outbreaks and emerging pathogens. GMI envisions a global system of DNA genome databases for microbial and infectious disease identification and diagnostics. Such a system will benefit those addressing individual problems at the frontline such as clinicians and veterinarians, as well as policy-makers, regulators, and industry. By enabling access to this global resource, a professional response on health threats will be within reach of all countries with basic laboratory infrastructure.</p>
           <p>Among a number of world class scientists, institutions and organisations supporting GMI are Food and Agriculture Organization of the United Nations (FAO), the United States Department of Agriculture (USDA), the United States Food and Drug Administration (FDA), the United States Center for Disease Control and Prevention (CDC), the Denmark Technological University (DTU). As the name indicates, this is the  10th GMI meeting to be held.InoQuoTech will also be the host for the “Whole Genome Sequencing Technology and Produce Safety: Testing for pathogenic bacterial DNA and its significance” meeting.</p>
           <p>If you are interested in having a stand of 3X3 m where you can exhibit your company or institution at either or both meetings, please contact <strong>lourdessimental@inoquotech.com</strong> to discuss your participation. Also, if you are interested in having allocated time to orally discuss your company during the event, let me know, as this is feasible.</p>
-          <p><a href="https://www.starwoodmeeting.com/events/start.action?id=1612269802&key=F68669B">Hotel sede</a></p>
-          <p><a href="http://www.eliteincentives.com/english/gmi/gmi.html">Activities/Actividades</a></p>
+
+          <div style={style.linksContainer}>
+            <p>Download: <a target="_blank" href="https://drive.google.com/file/d/0B59YKT8NCxmcMTg0Wm91NjM1NmM/view?usp=sharing">Invitation</a></p>
+            <p>Descargar: <a target="_blank" href="https://drive.google.com/file/d/0B59YKT8NCxmcc2VKa2dlbzZLb1U/view?usp=sharing">Invitación</a></p>
+            <p><a href="https://www.starwoodmeeting.com/events/start.action?id=1612269802&key=F68669B">Hotel sede</a></p>
+            <p><a href="http://www.eliteincentives.com/english/gmi/gmi.html">Activities/Actividades</a></p>
+          </div>
+
+          <div style={style.divSponsor}>
+            <h3 style={style.titleSponsor}>Sponsorships:</h3>
+            <div>
+              <a href="https://www.illumina.com/"><img src={Illumina} width='200px'/></a>
+            </div>
+          </div>
         </div>
+
         <div style={{ textAlign: 'center' }}>
           <RaisedButton
             onClick={this.onHandleClick}
@@ -46,6 +71,7 @@ class InvitationContainer extends Component {
             icon={<Face />}
           />
         </div>
+
       </PaperWrapper>
     )
   }

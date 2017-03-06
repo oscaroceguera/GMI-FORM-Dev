@@ -12,10 +12,22 @@ import Snackbar from 'material-ui/Snackbar'
 import { colors } from 'material-ui/styles'
 
 import { formTextField, textField, formRadioField, radioFieldRow, registrationHeader } from './style.css'
+import Illumina from '../../illumina-logo.svg'
 
 const stylJS = {
   labelStyle: {
     color: colors.grey500
+  },
+  alginCenter: {
+    textAlign: 'center',
+    borderTop: '1px solid gray'
+  },
+  titleSponsor: {
+    color: '#3F51B5',
+    padding: 0
+  },
+  divSponsor: {
+    textAlign: 'center'
   }
 }
 
@@ -79,7 +91,7 @@ class FormContainer extends Component {
     return (
       <div>
         <PaperWrapper>
-          <h1 className={registrationHeader}>Registration / Inscripción</h1>
+          <h1 className={registrationHeader}>Registration / Registro</h1>
           <div className={formTextField}>
             {
               TEXT_FIELDS.map((items, index) => (
@@ -109,6 +121,12 @@ class FormContainer extends Component {
               ))
             }
           </div>
+          <div style={stylJS.divSponsor}>
+            <h3 style={stylJS.titleSponsor}>Sponsorships</h3>
+            <div>
+              <a href="https://www.illumina.com/"><img src={Illumina} width='200px'/></a>
+            </div>
+          </div>
           <div style={{margin: '1em', textAlign: 'center'}}>
             <RaisedButton
               label='Register/Registrarse'
@@ -116,6 +134,18 @@ class FormContainer extends Component {
               disabled={!showSubmit}
               onClick={this.onSave}
               />
+          </div>
+          <div style={stylJS.alginCenter}>
+            <p>
+              {'*Si tienes algún problema con el formulario de registro por favor usa esta opcion.'}
+              <br />
+              <a href='https://goo.gl/forms/9a3cSnWI2wGZiqTf1'>Registro</a>
+            </p>
+            <p>
+              {'*If you have any problems with the registration form please use this option.'}
+              <br />
+              <a href='https://goo.gl/forms/9a3cSnWI2wGZiqTf1'>Registration</a>
+            </p>
           </div>
         </PaperWrapper>
         {!!savedPerson
