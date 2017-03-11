@@ -66,7 +66,7 @@ class FormContainer extends Component {
     }
 
     return field
-      ? field.length > 3
+      ? field.length > 0
         ? ''
         : 'required/requerido'
       : 'required/requerido'
